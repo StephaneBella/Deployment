@@ -84,16 +84,16 @@ if st.button("Dataset", use_container_width=True, on_click=set_page_selection, a
 if st.button("EDA", use_container_width=True, on_click=set_page_selection, args=('eda',)):
         st.session_state.page_selection = "eda"
 
-    if st.button("Data Cleaning / Pre-processing", use_container_width=True, on_click=set_page_selection, args=('data_cleaning',)):
+if st.button("Data Cleaning / Pre-processing", use_container_width=True, on_click=set_page_selection, args=('data_cleaning',)):
         st.session_state.page_selection = "data_cleaning"
 
-    if st.button("Machine Learning", use_container_width=True, on_click=set_page_selection, args=('machine_learning',)): 
+if st.button("Machine Learning", use_container_width=True, on_click=set_page_selection, args=('machine_learning',)): 
         st.session_state.page_selection = "machine_learning"
 
-    if st.button("Prediction", use_container_width=True, on_click=set_page_selection, args=('prediction',)): 
+if st.button("Prediction", use_container_width=True, on_click=set_page_selection, args=('prediction',)): 
         st.session_state.page_selection = "prediction"
 
-    if st.button("Conclusion", use_container_width=True, on_click=set_page_selection, args=('conclusion',)):
+if st.button("Conclusion", use_container_width=True, on_click=set_page_selection, args=('conclusion',)):
         st.session_state.page_selection = "conclusion"
 
     # Project Details
