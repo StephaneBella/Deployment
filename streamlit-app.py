@@ -54,12 +54,6 @@ with st.sidebar:
      Notre objectif est de rendre l'apprentissage automatique et l'analyse de données plus accessibles, en utilisant un exemple concret et bien connu.
      """)
 
-import streamlit as st
-import pandas as pd
-import matplotlib.pyplot as plt
-
-# Charger le dataset Iris (vous pouvez le remplacer par votre propre méthode de chargement)
-iris = pd.read_csv("iris.csv")
 
 if st.button("Dataset", use_container_width=True, on_click=set_page_selection, args=('dataset',)):
     st.session_state.page_selection = 'dataset'
