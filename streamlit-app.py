@@ -58,7 +58,7 @@ with st.sidebar:
 	    st.session_state.page_selection = 'dataset'
 	    
 	    # Sélectionner les colonnes numériques
-            numeric_columns = iris.select_dtypes(include=['number']).columns
+	    numeric_columns = iris.select_dtypes(include=['number']).columns
 
             # Créer une figure avec 2 lignes et 2 colonnes de sous-graphiques
             fig, axes = plt.subplots(nrows=2, ncols=2, figsize=(10, 8))
