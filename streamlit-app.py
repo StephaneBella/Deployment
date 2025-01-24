@@ -1,10 +1,10 @@
 # Import the required packages
 
-import matplotlib.pyplot as plt
 import streamlit as st
 import pandas as pd
 import altair as alt
 import seaborn as sns
+import plotly.express as px
 
 # Page configuration
 st.set_page_config(
@@ -56,27 +56,22 @@ with st.sidebar:
      """)
 
 
+
+# Charger le dataset Iris
+df = pd.read_csv("iris.csv")
+
 if st.button("Dataset", use_container_width=True, on_click=set_page_selection, args=('dataset',)):
     st.session_state.page_selection = 'dataset'
 
-    # Load data
-    df = pd.read_csv('iris.csv', delimiter=',')
     # Sélectionner les colonnes numériques
     numeric_columns = df.select_dtypes(include=['number']).columns
 
     # Créer une figure avec 2 lignes et 2 colonnes de sous-graphiques
-    fig, axes = plt.subplots(nrows=2, ncols=2, figsize=(10, 8))
-    fig.suptitle("Histogrammes des variables du dataset Iris")
-
-    # Créer un histogramme pour chaque variable numérique
-    for i, column in enumerate(numeric_columns):
-        row = i // 2
-        col = i % 2
-        sns.histplot(data=df, x=column, ax=axes[row, col])
-        axes[row, col].set_title(f"Histogramme de {column}")
+    fig = px.histogram(df, x=numeric_columns, ncols=2)
+    fig.update_layout(title_text='Histogrammes des variables du dataset Iris')
 
     # Afficher la figure dans Streamlit
-    st.pyplot(fig)
+    st.plotly_chart(fig)
 
 if st.button("EDA", use_container_width=True, on_click=set_page_selection, args=('eda',)):
         st.session_state.page_selection = "eda"
