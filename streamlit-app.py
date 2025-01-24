@@ -35,23 +35,23 @@ with st.sidebar:
     if st.button("About", use_container_width=True, on_click=set_page_selection, args=('about',)):
         st.session_state.page_selection = 'about'
 	st.write("""
-    ## À propos de cette application
+        ## À propos de cette application
 
-    Cette application est conçue pour **explorer** et **comprendre** le célèbre jeu de données des **fleurs d'Iris**. 
+        Cette application est conçue pour **explorer** et **comprendre** le célèbre jeu de données des **fleurs d'Iris**. 
 
-    **Qu'est-ce que le jeu de données Iris ?**
+        **Qu'est-ce que le jeu de données Iris ?**
 
-    C'est une base de données utilisée comme référence dans le domaine de l'apprentissage automatique. Elle contient des informations sur trois espèces d'Iris (Setosa, Versicolor et Virginica), telles que la longueur et la largeur de leurs sépales et pétales.
+        C'est une base de données utilisée comme référence dans le domaine de l'apprentissage automatique. Elle contient des informations sur trois espèces d'Iris (Setosa, Versicolor et Virginica), telles que la longueur et la largeur de leurs sépales et pétales.
 
-    **Que fait cette application ?**
+        **Que fait cette application ?**
 
-    * **Présentation des données:** Visualisation des caractéristiques des fleurs d'Iris pour une meilleure compréhension.
-    * **Prédiction:** Utilisation de modèles d'apprentissage automatique pour prédire l'espèce d'une fleur en fonction de ses mesures.
+        * **Présentation des données:** Visualisation des caractéristiques des fleurs d'Iris pour une meilleure compréhension.
+        * **Prédiction:** Utilisation de modèles d'apprentissage automatique pour prédire l'espèce d'une fleur en fonction de ses mesures.
 
-    **Objectif:**
+        **Objectif:**
 
-    Notre objectif est de rendre l'apprentissage automatique et l'analyse de données plus accessibles, en utilisant un exemple concret et bien connu.
-    """)
+        Notre objectif est de rendre l'apprentissage automatique et l'analyse de données plus accessibles, en utilisant un exemple concret et bien connu.
+        """)
     
     if st.button("Dataset", use_container_width=True, on_click=set_page_selection, args=('dataset',)):
         st.session_state.page_selection = 'dataset'
