@@ -58,14 +58,14 @@ with st.sidebar:
 	    st.session_state.page_selection = 'dataset'
 	    
 	    # Sélectionner les colonnes numériques
-	    numeric_columns = iris.select_dtypes(include=['number']).columns
-	    
-	    # Créer une figure avec 2 lignes et 2 colonnes de sous-graphiques
-	    fig, axes = plt.subplots(nrows=2, ncols=2, figsize=(10, 8))
-	    fig.suptitle("Histogrammes des variables du dataset Iris")
-	    
-	    # Créer un histogramme pour chaque variable numérique
-	    for i, column in enumerate(numeric_columns):
+            numeric_columns = iris.select_dtypes(include=['number']).columns
+
+            # Créer une figure avec 2 lignes et 2 colonnes de sous-graphiques
+            fig, axes = plt.subplots(nrows=2, ncols=2, figsize=(10, 8))
+            fig.suptitle("Histogrammes des variables du dataset Iris")
+
+            # Créer un histogramme pour chaque variable numérique
+            for i, column in enumerate(numeric_columns):
 		    row = i // 2
 		    col = i % 2
 		    sns.histplot(data=iris, x=column, ax=axes[row, col])
