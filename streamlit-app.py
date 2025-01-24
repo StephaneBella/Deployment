@@ -54,25 +54,32 @@ with st.sidebar:
      Notre objectif est de rendre l'apprentissage automatique et l'analyse de données plus accessibles, en utilisant un exemple concret et bien connu.
      """)
 
-    if st.button("Dataset", use_container_width=True, on_click=set_page_selection, args=('dataset',)):
-	    st.session_state.page_selection = 'dataset'
-	    
-    
-            # Sélectionner les colonnes numériques
-    	    numeric_columns = iris.select_dtypes(include=['number']).columns
+import streamlit as st
+import pandas as pd
+import matplotlib.pyplot as plt
 
-            # Créer une figure avec 2 lignes et 2 colonnes de sous-graphiques
-            fig, axes = plt.subplots(nrows=2, ncols=2, figsize=(10, 8))
-            fig.suptitle("Histogrammes des variables du dataset Iris")
+# Charger le dataset Iris (vous pouvez le remplacer par votre propre méthode de chargement)
+iris = pd.read_csv("iris.csv")
 
-            # Créer un histogramme pour chaque variable numérique
-            for i, column in enumerate(numeric_columns):
-		    row = i // 2
-		    col = i % 2
-		    sns.histplot(data=iris, x=column, ax=axes[row, col])
-		    axes[row, col].set_title(f"Histogramme de {column}")
-		    # Afficher la figure dans Streamlit
-            st.pyplot(fig)
+if st.button("Dataset", use_container_width=True, on_click=set_page_selection, args=('dataset',)):
+    st.session_state.page_selection = 'dataset'
+
+    # Sélectionner les colonnes numériques
+    numeric_columns = iris.select_dtypes(include=['number']).columns
+
+    # Créer une figure avec 2 lignes et 2 colonnes de sous-graphiques
+    fig, axes = plt.subplots(nrows=2, ncols=2, figsize=(10, 8))
+    fig.suptitle("Histogrammes des variables du dataset Iris")
+
+    # Créer un histogramme pour chaque variable numérique
+    for i, column in enumerate(numeric_columns):
+        row = i // 2
+        col = i % 2
+        sns.histplot(data=iris, x=column, ax=axes[row, col])
+        axes[row, col].set_title(f"Histogramme de {column}")
+
+    # Afficher la figure dans Streamlit
+    st.pyplot(fig)
 
 if st.button("EDA", use_container_width=True, on_click=set_page_selection, args=('eda',)):
         st.session_state.page_selection = "eda"
