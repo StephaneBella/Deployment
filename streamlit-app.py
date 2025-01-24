@@ -72,7 +72,7 @@ with st.sidebar:
 		    axes[row, col].set_title(f"Histogramme de {column}")
 
             # Afficher la figure dans Streamlit
-            st.pyplot(fig)
+             st.pyplot(fig)
 
 if st.button("EDA", use_container_width=True, on_click=set_page_selection, args=('eda',)):
         st.session_state.page_selection = "eda"
