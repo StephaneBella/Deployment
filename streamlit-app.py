@@ -58,8 +58,10 @@ with st.sidebar:
 if st.button("Dataset", use_container_width=True, on_click=set_page_selection, args=('dataset',)):
     st.session_state.page_selection = 'dataset'
 
+    # Load data
+    df = pd.read_csv('iris.csv', delimiter=',')
     # Sélectionner les colonnes numériques
-    numeric_columns = iris.select_dtypes(include=['number']).columns
+    numeric_columns = df.select_dtypes(include=['number']).columns
 
     # Créer une figure avec 2 lignes et 2 colonnes de sous-graphiques
     fig, axes = plt.subplots(nrows=2, ncols=2, figsize=(10, 8))
@@ -69,7 +71,7 @@ if st.button("Dataset", use_container_width=True, on_click=set_page_selection, a
     for i, column in enumerate(numeric_columns):
         row = i // 2
         col = i % 2
-        sns.histplot(data=iris, x=column, ax=axes[row, col])
+        sns.histplot(data=df, x=column, ax=axes[row, col])
         axes[row, col].set_title(f"Histogramme de {column}")
 
     # Afficher la figure dans Streamlit
