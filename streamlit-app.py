@@ -57,6 +57,7 @@ with st.sidebar:
 
 
 
+
 # Charger le dataset Iris
 df = pd.read_csv("iris.csv")
 
@@ -66,12 +67,10 @@ if st.button("Dataset", use_container_width=True, on_click=set_page_selection, a
     # Sélectionner les colonnes numériques
     numeric_columns = df.select_dtypes(include=['number']).columns
 
-    # Créer une figure avec 2 lignes et 2 colonnes de sous-graphiques
-    fig = px.histogram(df, x=numeric_columns, ncols=2)
-    fig.update_layout(title_text='Histogrammes des variables du dataset Iris')
-
-    # Afficher la figure dans Streamlit
-    st.plotly_chart(fig)
+    # Afficher un histogramme pour chaque colonne numérique
+    for column in numeric_columns:
+        st.line_chart(df[column], use_container_width=True)
+        st.write("Histogramme de :", column)
 
 if st.button("EDA", use_container_width=True, on_click=set_page_selection, args=('eda',)):
         st.session_state.page_selection = "eda"
