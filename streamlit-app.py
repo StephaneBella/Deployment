@@ -64,10 +64,10 @@ with st.sidebar:
 	    fig.suptitle("Histogrammes des variables du dataset Iris")
 	    # Créer un histogramme pour chaque variable numérique
 	    for i, column in enumerate(numeric_columns):
-		row = i // 2
-		col = i % 2
-		sns.histplot(data=iris, x=column, ax=axes[row, col])
-		axes[row, col].set_title(f"Histogramme de {column}")
+		    row = i // 2
+		    col = i % 2
+		    sns.histplot(data=iris, x=column, ax=axes[row, col])
+		    axes[row, col].set_title(f"Histogramme de {column}")
 
             # Afficher la figure dans Streamlit
             st.pyplot(fig)
