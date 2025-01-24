@@ -34,7 +34,7 @@ with st.sidebar:
 
     if st.button("About", use_container_width=True, on_click=set_page_selection, args=('about',)):
         st.session_state.page_selection = 'about'
-	 st.write("""
+	st.write("""
     ## À propos de cette application
 
     Cette application est conçue pour **explorer** et **comprendre** le célèbre jeu de données des **fleurs d'Iris**. 
