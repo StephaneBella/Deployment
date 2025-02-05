@@ -118,7 +118,7 @@ if st.button("Résoudre le problème"):
     for i in range(len(solution)):
         st.write(f"X{i+1} : {round(solution[i], 2)}")
 
-    st.write(f"**Valeur optimale (Maximum de la fonction objectif) :** {round(valeur_optimale, 2)}")
+    st.write(f"**Valeur optimale (Maximum de la fonction objectif) :** {-round(valeur_optimale, 2)}")
 
 # Affichage des étapes seulement si le calcul est fait
 if 'steps' in st.session_state:
