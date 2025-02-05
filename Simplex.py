@@ -18,7 +18,7 @@ def methode_simplexe(c, A, b):
     tableau = np.vstack([tableau, ligne_c])
 
     iteration = 0
-    steps = [pd.DataFrame(tableau)]
+    steps = [pd.DataFrame(tableau)]  # On commence avec le tableau initial
 
     while True:
         # Sélection de la colonne pivot (variable entrante)
@@ -26,11 +26,11 @@ def methode_simplexe(c, A, b):
 
         # Vérification de l'optimalité
         if tableau[-1, colonne_pivot] >= 0:
-            break  
+            break  # Si tous les coefficients de la fonction objectif sont positifs, on a trouvé la solution optimale
 
         # Sélection de la ligne pivot (variable sortante)
         ratios = tableau[:-1, -1] / tableau[:-1, colonne_pivot]
-        ratios[ratios <= 0] = np.inf  
+        ratios[ratios <= 0] = np.inf  # Ignorer les valeurs négatives ou nulles
         ligne_pivot = np.argmin(ratios)
 
         # Normalisation de la ligne pivot
@@ -43,18 +43,18 @@ def methode_simplexe(c, A, b):
                 tableau[i, :] -= tableau[i, colonne_pivot] * tableau[ligne_pivot, :]
 
         iteration += 1
-        steps.append(pd.DataFrame(tableau))  # Ajout de chaque étape dans la liste
+        steps.append(pd.DataFrame(tableau))  # Enregistrer le tableau de cette itération
 
     # Extraction des résultats
     solution = np.zeros(num_variables)
     for j in range(num_variables):
-        colonne = tableau[:-1, j]  
+        colonne = tableau[:-1, j]  # Chercher les colonnes avec une seule valeur égale à 1
         if np.sum(colonne == 1) == 1 and np.sum(colonne == 0) == num_contraintes - 1:
             ligne = np.where(colonne == 1)[0][0]
             solution[j] = tableau[ligne, -1]
 
     # Récupération de la valeur optimale
-    valeur_optimale = -tableau[-1, -1]
+    valeur_optimale = -tableau[-1, -1]  # Récupère la valeur de la fonction objectif
 
     return solution, valeur_optimale, steps
 
