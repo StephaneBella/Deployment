@@ -114,16 +114,11 @@ if st.button("Résoudre le problème"):
 
     st.write(f"**Valeur optimale (Maximum de la fonction objectif) :** {round(valeur_optimale, 2)}")
 
-    # Flag pour afficher les étapes
-    st.session_state.calcul_resolu = True
-
-# Affichage des étapes seulement si le calcul est fait
-if 'calcul_resolu' in st.session_state and st.session_state.calcul_resolu:
-    if st.button("Afficher toutes les étapes"):
-        st.header("Étapes du Simplexe :")
-        for i, step in enumerate(steps):
-            if i == 0:
-                st.write('Forme Standard')
-            st.write(f"**Itération {i}**")
-            st.dataframe(step)
-
+# Bouton pour afficher toutes les étapes
+if solution is not None and st.button("Afficher toutes les étapes"):
+    st.header("Étapes du Simplexe :")
+    for i, step in enumerate(steps):
+        if i == 0:
+            st.write('Forme Standard')
+        st.write(f"**Itération {i}**")
+        st.dataframe(step)
