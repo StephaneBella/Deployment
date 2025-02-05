@@ -44,6 +44,8 @@ def methode_simplexe(c, A, b):
 
         iteration += 1
         steps.append(pd.DataFrame(tableau))  # Enregistrer le tableau de cette itération
+        print(f"Step {iteration}:")  # Affichage pour débogage
+        print(pd.DataFrame(tableau))  # Affichage pour débogage
 
     # Extraction des résultats
     solution = np.zeros(num_variables)
@@ -96,7 +98,6 @@ b3 = float(b3_input)
 # Variables pour le stockage des résultats
 solution = None
 valeur_optimale = None
-steps = []
 
 # Bouton pour résoudre
 if st.button("Résoudre le problème"):
@@ -107,6 +108,11 @@ if st.button("Résoudre le problème"):
     # Résolution
     solution, valeur_optimale, steps = methode_simplexe(c, A, b)
 
+    # Enregistrer les étapes dans le session_state
+    st.session_state.steps = steps
+    st.session_state.solution = solution
+    st.session_state.valeur_optimale = valeur_optimale
+
     # Affichage des résultats
     st.header("Résultats :")
     for i in range(len(solution)):
@@ -114,16 +120,13 @@ if st.button("Résoudre le problème"):
 
     st.write(f"**Valeur optimale (Maximum de la fonction objectif) :** {round(valeur_optimale, 2)}")
 
-    # Flag pour afficher les étapes
-    st.session_state.calcul_resolu = True
-
 # Affichage des étapes seulement si le calcul est fait
-if 'calcul_resolu' in st.session_state and st.session_state.calcul_resolu:
+if 'steps' in st.session_state:
     if st.button("Afficher toutes les étapes"):
         st.header("Étapes du Simplexe :")
-        # On vérifie si steps contient des DataFrames avant de les afficher
-        if steps:
-            for i, step in enumerate(steps):
+        # Vérifier si les étapes sont présentes
+        if st.session_state.steps:
+            for i, step in enumerate(st.session_state.steps):
                 st.write(f"**Itération {i + 1}**")
                 st.dataframe(step)  # Affiche chaque tableau étape par étape
         else:
